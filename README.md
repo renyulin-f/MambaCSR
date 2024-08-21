@@ -1,3 +1,3 @@
 # MambaCSR
-The code source of MambaCSR.
-Code will be coming soon!
+The source code of MambaCSR.
+The code will be coming soon!
