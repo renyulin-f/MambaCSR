@@ -20,14 +20,10 @@
 Please cite us if this work is helpful to you.
 
 ```
-@misc{ren2024mambacsrdualinterleavedscanningcompressed,
+@misc{ren2024mambacsr,
       title={MambaCSR: Dual-Interleaved Scanning for Compressed Image Super-Resolution With SSMs}, 
-      author={Yulin Ren and Xin Li and Mengxi Guo and Bingchen Li and Shijie Zhao and Zhibo Chen},
-      year={2024},
-      eprint={2408.11758},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2408.11758}, 
+      author={Ren, Yulin and Li, Xin and Guo, Mengxi and Li, Bingchen and Zhao, Shijie and Chen, Zhibo},
+      year={2024}
 }
 ```
 
