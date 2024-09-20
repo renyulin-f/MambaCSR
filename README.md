@@ -106,7 +106,7 @@ bash Train_MambaCSR_Final.sh
 bash Train_MambaCSR_wo.sh
 ```
 
-## Testing
+## :sparkles: Testing
 To start up, please first modify the yml file. Modify "dataroot_gt" and "dataroot_lq" in options/test/test_MambaCSR_Q10_Final.yml
 ```
 python basicsr/test.py -opt options/test/test_MambaCSR_Q10_Final.yml
