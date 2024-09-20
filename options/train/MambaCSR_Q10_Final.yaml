@@ -1,0 +1,110 @@
+name: MambaCSR-Q10-Final #With cross-scale scanning method
+model_type: MambaCSRModel
+scale: 4
+num_gpu: 8
+manual_seed: 10
+padding_size: 64
+
+# dataset and data loader settings
+datasets:
+  train:
+    task: SR
+    name: DF2K_CSR
+    type: PairedImageDataset
+    dataroot_gt:
+      - CSR_dataset/DF2K_HR_sub # Here prepare dataset using extract_subimages.py
+    dataroot_lq:
+      - CSR_dataset/LR_10_sub
+    filename_tmpl: '{}'
+    io_backend:
+      type: disk
+    gt_size: 256
+    use_hflip: true
+    use_rot: true
+
+    # data loader
+    use_shuffle: true
+    num_worker_per_gpu: 16
+    batch_size_per_gpu: 4
+    dataset_enlarge_ratio: 1
+    prefetch_mode: ~
+
+  val:
+    name: Manga109
+    type: PairedImageDataset
+    dataroot_gt: Testsets/Manga109/HR/
+    dataroot_lq: Testsets/Manga109/LR_q10/
+    filename_tmpl: '{}'
+    io_backend:
+      type: disk
+
+# network structures
+network_g:
+  type: MambaCSR
+  img_size: 64
+  in_chans: 3
+  upscale: 4
+  embed_dim: 180
+  d_state: 16
+  scan_size: 8
+  depths: [6, 6, 6, 6, 6, 6]
+  depths2: [6] # The depth of cross-scale module
+  mlp_ratio: 2
+  img_range: 1.
+  upsampler: 'pixelshuffle'
+  resi_connection: '1conv'
+  dual_interleaved_scan: True # Whether use dual-interleaved scanning.
+  cross_scale_scan: True # Whether use potion-aligned cross-scale scanning.
+
+
+path:
+  pretrain_network_g:
+  strict_load_g: false
+  resume_state: 
+
+train:
+  ema_decay: 0.999
+  optim_g:
+    type: Adam
+    lr: !!float 2e-4
+    weight_decay: 0
+    betas: [0.9, 0.99]
+
+  scheduler:
+    type: MultiStepLR
+    milestones: [ 150000, 250000, 275000]
+    gamma: 0.5
+
+  total_iter: 300000
+  warmup_iter: -1  # no warm up
+
+  # losses
+  pixel_opt:
+    type: L1Loss
+    loss_weight: 1.0
+    reduction: mean
+
+val:
+  val_freq: !!float 1e4
+  save_img: true
+  suffix: 
+  metrics:
+    psnr: # metric name, can be arbitrary
+      type: calculate_psnr
+      crop_border: 4
+      test_y_channel: true
+
+
+# logging settings
+logger:
+  print_freq: 1000
+  save_checkpoint_freq: !!float 1e4
+  use_tb_logger: true
+  wandb:
+    project: ~
+    resume_id: ~
+
+# dist training settings
+dist_params:
+  backend: nccl
+  port: 29500

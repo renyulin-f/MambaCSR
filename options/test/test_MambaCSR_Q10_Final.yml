@@ -1,0 +1,94 @@
+# Test yaml file for final CSR QF=10
+name: CSR-Q10-Test-Final_Version
+model_type: MambaCSRModel
+scale: 4
+num_gpu: 1
+manual_seed: 10
+padding_size: 64
+
+# dataset and data loader settings
+datasets:
+  val1:
+    name: Set5
+    type: PairedImageDataset
+    dataroot_gt: Testsets/Set5/HR
+    dataroot_lq: Testsets/Set5/LR_q10
+    filename_tmpl: '{}'
+    io_backend:
+      type: disk
+
+  val2:
+    name: Set14
+    type: PairedImageDataset
+    dataroot_gt: Testsets/Set14/HR
+    dataroot_lq: Testsets/Set14/LR_q10
+    filename_tmpl: '{}'
+    io_backend:
+      type: disk
+
+  val3:
+    name: Urban100
+    type: PairedImageDataset
+    dataroot_gt: Testsets/Urban100/HR
+    dataroot_lq: Testsets/Urban100/LR_q10
+    filename_tmpl: '{}'
+    io_backend:
+      type: disk
+
+  val4:
+    name: Manga109
+    type: PairedImageDataset
+    dataroot_gt: Testsets/Manga109/HR
+    dataroot_lq: Testsets/Manga109/LR_q10
+    filename_tmpl: '{}'
+    io_backend:
+      type: disk
+
+  val5:
+    name: DIV2K_Test
+    type: PairedImageDataset
+    dataroot_gt: Testsets/DIV2K/HR
+    dataroot_lq: Testsets/DIV2K/LR_q10
+    filename_tmpl: '{}x4'
+    io_backend:
+      type: disk
+
+# network structures
+network_g:
+  type: MambaCSR
+  img_size: 64
+  in_chans: 3
+  upscale: 4
+  embed_dim: 180
+  d_state: 16
+  scan_size: 8
+  depths: [6, 6, 6, 6, 6, 6]
+  depths2: [6] # The depth of cross-scale module
+  mlp_ratio: 2
+  img_range: 1.
+  upsampler: 'pixelshuffle'
+  resi_connection: '1conv'
+  dual_interleaved_scan: True # Whether to use dual-interleaved scanning.
+  cross_scale_scan: True # Whether to use potion-aligned cross-scale scanning.
+
+# path
+path:
+  pretrain_network_g: Pretrained_weights/Cross-scale-QF10-x4.pth
+  strict_load_g: false 
+  resume_state: 
+  param_key_g: params_ema
+
+val:
+  val_freq: !!float 5e3
+  save_img: true
+  suffix: 
+  metrics:
+    psnr: # metric name, can be arbitrary
+      type: calculate_psnr
+      crop_border: 4
+      test_y_channel: true
+
+    ssim: # metric name, can be arbitrary
+      type: calculate_ssim
+      crop_border: 4
+      test_y_channel: true
