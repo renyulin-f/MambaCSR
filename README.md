@@ -9,7 +9,7 @@
 This repository is the official PyTorch implementation of MambaCSR.
 
 ## :bookmark: News!!!
-- [x] 2024-08-22: **Arxiv Version has been released.**
+- [x] 2024-08-22: **Arxiv version has been released.**
 - [x] 2024-09-19: **Updated training and test codes (Release two weights for QF_10) .**
 
 > We present MambaCSR, a simple but effective framework based on Mamba for the challenging compressed image super-resolution (CSR) task. Particularly, the scanning strategies of Mamba are crucial for effective contextual knowledge modeling in the restoration process despite it relying on selective state space modeling for all tokens. In this work, we propose an efficient dual-interleaved scanning paradigm (DIS) for CSR, which is composed of two scanning strategies: (i) hierarchical interleaved scanning is designed to comprehensively capture and utilize the most potential contextual information within an image by simultaneously taking advantage of the local window-based and sequential scanning methods; (ii) horizontal-to-vertical interleaved scanning is proposed to reduce the computational cost by leaving the redundancy between the scanning of different directions. To overcome the non-uniform compression artifacts, we also propose position-aligned cross-scale scanning to model multi-scale contextual information. Experimental results on multiple benchmarks have shown the great performance of our MambaCSR in the compressed image super-resolution task. 
