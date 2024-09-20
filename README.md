@@ -31,7 +31,7 @@ The CUDA driver must be higher than 11.6 (We use 11.8 in MambaCSR)
 - Python 3.9
 - PyTorch 2.1.1 + cu118
 
-1: First install Pytorch(2.1.1+cu118) as following command:
+1: First install Pytorch (2.1.1+cu118) as following command:
 
 ```
 pip install torch==2.1.1 torchvision==0.16.1 torchaudio==2.1.1 --index-url https://download.pytorch.org/whl/cu118
@@ -59,7 +59,7 @@ pip install -e mamba-1p1p1
 
 * Download DIV2K: Following this link: [DIV2K](http://data.vision.ee.ethz.ch/cvl/DIV2K/DIV2K_train_HR.zip)
 * Download Flickr2K: Following this link: [Flickr2K](https://cv.snu.ac.kr/research/EDSR/Flickr2K.tar)
-* Here we take CSR of x4(QF=10) as example. Make a directory with name **CSR_dataset**. Move GT images from DIV2K and Flickr2K into **DF2K_HR** folder under **CSR_dataset**. Compressed x4 downsampled using JPEG compression function with CV2 at quality factor of 10 and move them into **LR_10** folder under **DF2K_HR**. Now your dicrectory should look like:
+* Here we take CSR of x4 (QF=10) as example. Make a directory with name **CSR_dataset**. Move GT images from DIV2K and Flickr2K into **DF2K_HR** folder under **CSR_dataset**. Compressed x4 downsampled using JPEG compression function with CV2 at quality factor of 10 and move them into **LR_10** folder under **DF2K_HR**. Now your dicrectory should look like:
 ```
 CSR_dataset
 |-DF2K_HR
@@ -115,6 +115,15 @@ python basicsr/test.py -opt options/test/test_MambaCSR_Q10_Final.yml
 ### Weights
 We provide our two weights (MambaCSR_Final with cross-scale and MambaCSR_wo) in [Google drive](https://drive.google.com/drive/folders/1595CDawG7MIiNgMAAPcAtDpM_PiPKmGS?usp=sharing)
 
+
+## Results
+<p align="center">
+  <img width="800" src="./Figs/Visual1.png">
+</p>
+<p align="center">
+  <img width="800" src="./Figs/Visual2.png">
+</p>
+
 ## Cite US
 Please cite us if this work is helpful to you.
 
@@ -125,15 +134,6 @@ Please cite us if this work is helpful to you.
       year={2024}
 }
 ```
-
-## Results
-<p align="center">
-  <img width="800" src="./Figs/Visual1.png">
-</p>
-<p align="center">
-  <img width="800" src="./Figs/Visual2.png">
-</p>
-
 
 ## Acknowledgments
 The basic code is partially from the below repos.
