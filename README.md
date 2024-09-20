@@ -24,7 +24,7 @@ This repository is the official PyTorch implementation of MambaCSR.
 
 ## <a name="installation"></a> Environment Installation
 
-The CUDA driver must be higher than 11.6 (We use 11.8 in MambaSR)
+The CUDA driver must be higher than 11.6 (We use 11.8 in MambaCSR)
 
 - Ubuntu 20.04
 - CUDA 11.8
