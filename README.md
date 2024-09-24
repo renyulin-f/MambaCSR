@@ -4,7 +4,7 @@
 
 # MambaCSR: Dual-Interleaved Scanning for Compressed Image Super-Resolution With SSMs
 
-[![arXiv](https://img.shields.io/badge/arXiv-Paper-<COLOR>.svg)](https://arxiv.org/abs/2408.11758)  [![Project](https://img.shields.io/badge/Project-Page-blue.svg)]() ![visitors](https://visitor-badge.laobi.icu/badge?page_id=renyulin-f/MambaCSR)
+[![arXiv](https://img.shields.io/badge/arXiv-Paper-<COLOR>.svg)](https://arxiv.org/abs/2408.11758)  [![Project](https://img.shields.io/badge/Project-Page-blue.svg)]()  ![visitors](https://visitor-badge.laobi.icu/badge?page_id=renyulin-f/MambaCSR)
 
 This repository is the official PyTorch implementation of MambaCSR.
 
